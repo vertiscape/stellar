@@ -1,38 +1,19 @@
 [![LENIS](https://assets.darkroom.engineering/lenis/header.png)](https://github.com/darkroomengineering/lenis)
 
-[![npm](https://img.shields.io/npm/v/lenis?colorA=000000&colorB=ff98a2
-)](https://www.npmjs.com/package/lenis)
-[![downloads](https://img.shields.io/npm/dm/lenis?colorA=000000&colorB=ff98a2
-)](https://www.npmjs.com/package/lenis)
-[![size](https://img.shields.io/bundlephobia/minzip/lenis?label=size&colorA=000000&colorB=ff98a2)](https://bundlephobia.com/package/lenis)
-
 ## Introduction
-
 Lenis is a lightweight, robust, and performant smooth scroll library. It's designed by [@darkroom.engineering](https://twitter.com/darkroomdevs) to be simple to use and easy to integrate into your projects. It's built with performance in mind and is optimized for modern browsers. It's perfect for creating smooth scrolling experiences on your website such as webgl scroll synching, parallax effects and much more. See [ Demo](https://lenis.darkroom.engineering/) and [Showcase](#lenis-in-use).
 
-<br/>
-
 ## Sponsorship
-
 If you like Lenis, please consider [sponsoring us](https://github.com/sponsors/darkroomengineering). Your support helps us maintain the project and continue to improve it.
 
-<br>
-
 ## Packages
-
 - [lenis](https://github.com/darkroomengineering/lenis/blob/main/README.md)
 - [lenis/react](https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md)
 - [lenis/snap](https://github.com/darkroomengineering/lenis/tree/main/packages/snap/README.md)
 
-
-<br>
-
 ## Installation
-
 ### JavaScript
-
-using a package manager:
-
+Using a package manager:
 ```bash
 npm i lenis
 ```
@@ -40,21 +21,13 @@ npm i lenis
 import Lenis from 'lenis'
 ```
 
-<br/>
-
 using scripts:
-
 ```html
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
 ```
 
-
-<br>
-
 ## Setup
-
 ### Basic:
-
 ```js
 const lenis = new Lenis()
 
@@ -71,7 +44,6 @@ requestAnimationFrame(raf)
 ```
 
 #### Recommended CSS:
-
 ```css
 html.lenis, html.lenis body {
   height: auto;
@@ -94,14 +66,12 @@ html.lenis, html.lenis body {
 }
 ```
 
-or link the CSS file:
-
+Or link the CSS file:
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
 ```
 
-or import it:
-
+Or import it:
 ```js
 import 'lenis/dist/lenis.css'
 ```
@@ -126,14 +96,7 @@ gsap.ticker.lagSmoothing(0)
 ### React:
 See documentation for [lenis/react](https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md).
 
-
-
-
-<br/>
-
-
 ## Instance settings
-
 | Option                   | Type                  | Default                                            | Description                                                                                                                                                                                                                                                                      |
 |--------------------------|-----------------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `wrapper`                | `HTMLElement, Window` | `window`                                           | The element that will be used as the scroll container                                                                                                                                                                                                                            |
@@ -155,8 +118,6 @@ See documentation for [lenis/react](https://github.com/darkroomengineering/lenis
 | `prevent`                | `function`            | `undefined`                                        | Manually prevent scroll to be smoothed based on elements traversed by events. If `true` is returned, it will prevent the scroll to be smoothed. Example: `(node) =>  node.classList.contains('cookie-modal')`                                                                    |
 | `virtualScroll`          | `function`            | `undefined`                                        | Manually modify the events before they get consumed. If `false` is returned, the scroll will not be smoothed. Examples: `(e) => { e.deltaY /= 2 }` (to slow down vertical scroll) or `({ event }) => !event.shiftKey` (to prevent scroll to be smoothed if shift key is pressed) |
 
-<br/>
-
 <!-- `target`: goal to reach
 - `number`: value to scroll in pixels
 - `string`: CSS selector or keyword (`top`, `left`, `start`, `bottom`, `right`, `end`)
@@ -174,7 +135,6 @@ See documentation for [lenis/react](https://github.com/darkroomengineering/lenis
 - `onComplete`(`function`): called when target is reached -->
 
 ## Instance Props
-
 | Property                | Type              | Description                                                                |
 |-------------------------|-------------------|----------------------------------------------------------------------------|
 | `animatedScroll`        | `number`          | Current scroll value                                                       |
@@ -196,10 +156,7 @@ See documentation for [lenis/react](https://github.com/darkroomengineering/lenis
 | `scroll` (getter)       | `number`          | Current scroll value (handles infinite scroll if activated)                |
 | `className` (getter)    | `string`          | `rootElement` className                                                    |
 
-<br/>
-
 ## Instance Methods
-
 | Method                      | Description                                                                     | Arguments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |-----------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `raf(time)`                 | Must be called every frame for internal usage.                                  | `time`: in ms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -210,8 +167,6 @@ See documentation for [lenis/react](https://github.com/darkroomengineering/lenis
 | `resize()`                  | Compute internal sizes, it has to be used if `autoResize` option is `false`.    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `destroy()`                 | Destroys the instance and removes all events.                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
-
-
 ## Instance Events
 
 | Event            | Callback Arguments        |
@@ -219,15 +174,11 @@ See documentation for [lenis/react](https://github.com/darkroomengineering/lenis
 | `scroll`         | Lenis instance            |
 | `virtual-scroll` | `{deltaX, deltaY, event}` |
 
-
-<br/>
-
 ## Considerations
 
 ### Nested scroll
 
 #### Using Javascript
-
 ```html
 <div id="modal">scrollable content</div>
 ```
@@ -239,18 +190,16 @@ const lenis = new Lenis({
 ```
 
 #### Using HTML
-
 ```html
 <div data-lenis-prevent>scrollable content</div>
 ```
 
-prevent wheel events only
-
+Prevent wheel events only:
 ```html
 <div data-lenis-prevent-wheel>scrollable content</div>
 ```
 
-prevent touch events only
+Prevent touch events only:
 ```html
 <div data-lenis-prevent-touch>scrollable content</div>
 ```
@@ -262,37 +211,25 @@ prevent touch events only
 <a href="#anchor" onclick="lenis.scrollTo('#anchor')">scroll to anchor</a>
 ```
 
-<br>
-
 ## Limitations
-
 - no support for CSS scroll-snap ([lenis/snap](https://github.com/darkroomengineering/lenis/tree/main/packages/snap/README.md))
 - capped to 60fps on Safari ([source](https://bugs.webkit.org/show_bug.cgi?id=173434)) and 30fps on low power mode
 - smooth scroll will stop working over iframe since they don't forward wheel events
 - position fixed seems to lag on MacOS Safari pre-M1 ([source](https://github.com/darkroomengineering/lenis/issues/103))
 
-<br>
-
 ## Tutorials
-
 - [Scroll Animation Ideas for Image Grids](https://tympanus.net/Development/ScrollAnimationsGrid/) by [Codrops](https://tympanus.net/codrops)
 - [How to Animate SVG Shapes on Scroll](https://tympanus.net/codrops/2022/06/08/how-to-animate-svg-shapes-on-scroll) by [Codrops](https://tympanus.net/codrops)
 - [The BEST smooth scrolling library for your Webflow website! (Lenis)](https://www.youtube.com/watch?v=VtCqTLRRMII) by [Diego Toda de Oliveira](https://www.diegoliv.works/)
 - [Easy smooth scroll in @Webflow with Lenis + GSAP ScrollTrigger tutorial](https://www.youtube.com/watch?v=gRKuzQTXq74) by [También Studio](https://www.tambien.studio/)
 
-<br>
-
 ## Plugins
-
 - [r3f-scroll-rig](https://github.com/14islands/r3f-scroll-rig) by [14islands](https://14islands.com/)
 - [locomotive-scroll](https://github.com/locomotivemtl/locomotive-scroll) by [Locomotive](https://locomotive.ca/)
 - [vue-lenis](https://github.com/zeokku/vue-lenis) by [ZEOKKU](https://zeokku.com/)
 - [nuxt-lenis](https://www.npmjs.com/package/nuxt-lenis) by [Milkshake Studio](https://milkshake.studio/)
 
-<br>
-
 ## Lenis in use
-
 - [Lunchbox](https://lunchbox.io/) by [Studio Freight](https://www.studiofreight.com/)
 - [Easol](https://easol.com/) by [Studio Freight](https://www.studiofreight.com/)
 - [Dragonfly](https://dragonfly.xyz/) by [Studio Freight](https://www.studiofreight.com/)
@@ -308,10 +245,7 @@ prevent touch events only
 - [DeSo](https://deso.com) by [Studio Freight](https://www.studiofreight.com/)
 - [Francesco Michelini's portfolio](https://www.francescomichelini.com/projects) by [Francesco Michelini](https://www.francescomichelini.com/)
 
-<br/>
-
 ## Authors
-
 This set of hooks is curated and maintained by the darkroom.engineering team:
 
 - Clément Roche ([@clementroche\_](https://twitter.com/clementroche_)) – [darkroom.engineering](https://darkroom.engineering)
@@ -319,8 +253,5 @@ This set of hooks is curated and maintained by the darkroom.engineering team:
 - Leandro Soengas ([@lsoengas](https://twitter.com/lsoengas)) - [darkroom.engineering](https://darkroom.engineering)
 - Franco Arza ([@arzafran](https://twitter.com/arzafran)) - [darkroom.engineering](https://darkroom.engineering)
 
-<br/>
-
 ## License
-
 [The MIT License.](https://opensource.org/licenses/MIT)
