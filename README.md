@@ -13,9 +13,9 @@ This will replaces `lenis` dependency source, so you don't have to make any furt
 ```
 
 ## Changes
-- Introduce `changed` boolean variable to `onComplete`.
-    - If the scrollTo `target` equals the current scroll offset, `changed` would be `false`, otherwise `changed` would be `true`.
-    - Reason: `changed` allows developers to handle asynchronous tasks differently when `scrollTo` does nothing and executes `onComplete`.
+### Added `changed` boolean variable to `onComplete`:
+- If the scrollTo `target` equals the current scroll offset, `changed` would be `false`, otherwise `changed` would be `true`.
+- Reason: `changed` allows developers to handle asynchronous tasks differently when `scrollTo` does nothing and executes `onComplete`.
 ```js
 lenis.scrollTo(target, {
     duration: 2,
@@ -29,17 +29,21 @@ lenis.scrollTo(target, {
 });
 ```
 
-- Introduce `ease` option to `ScrollToOptions` and `LenisOptions`.
-    - Using `cubicBezier` function from [framer-motion](https://github.com/framer/motion), `ease` takes 4 elements in an array and use that to create bezier curve function.
-    - `ease` will overrides `easing` if provided.
-    - Just like `easing`, `ease` is useless if `lerp` defined, and `duration` is required to make both works.
-    - Reason: `easing` function is nice to have, but usually, bezier curve is enough.
+### Added `ease` option to `ScrollToOptions` and `LenisOptions`:
+- Using `cubicBezier` function from [framer-motion](https://github.com/framer/motion), `ease` takes 4 elements in an array and use that to create bezier curve function.
+- `ease` will overrides `easing` if provided.
+- Just like `easing`, `ease` is useless if `lerp` defined, and `duration` is required to make both works.
+- Reason: `easing` function is nice to have, but usually, bezier curve is enough.
+
+Programmatically scroll with ease:
 ```js
 lenis.scrollTo(target, {
     duration: 2,
     ease: [0, 1, 1, 0],
 });
 ```
+
+Set default scroll behavior with ease:
 ```js
 // Enable bezier curve easing.
 lenis.options.lerp = undefined;
