@@ -1,4 +1,4 @@
-Go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) for official documentation. This repository only documents patches made for some specific features that I think would help while developing with it.
+Please go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) for official documentation. This repository only documents patches made for some specific features that I think would help while developing with it.
 
 ## Install
 ```
