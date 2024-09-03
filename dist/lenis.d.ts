@@ -108,7 +108,7 @@ type ScrollToOptions = {
     /**
      * Called when the scroll completes
      */
-    onComplete?: (lenis: Lenis) => void;
+    onComplete?: (lenis: Lenis, changed: boolean) => void;
     /**
      * Scroll even if stopped
      * @default false
@@ -342,8 +342,8 @@ declare class Lenis {
      *   onStart: () => {
      *     console.log('onStart')
      *   },
-     *   onComplete: () => {
-     *     console.log('onComplete')
+     *   onComplete: (lenis, changed) => {
+     *     console.log('onComplete', changed)
      *   },
      * })
      */

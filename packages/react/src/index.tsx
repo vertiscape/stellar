@@ -56,7 +56,7 @@ const fallbackContext: Partial<LenisContextValue> = {}
  *              lerp: 0.1,
  *              duration: 1,
  *              easing: (t) => t,
- *              onComplete: () => {
+ *              onComplete: (lenis, changed) => {
  *                console.log('Complete!')
  *              }
  *            })
@@ -185,7 +185,7 @@ const ReactLenis = forwardRef<LenisRef, LenisProps>(
     useEffect(() => {
       if (!lenis) return
 
-      const onScroll: ScrollCallback = (data) => {
+      const onScroll: ScrollCallback = (data: any) => {
         for (let i = 0; i < callbacksRefs.current.length; i++) {
           callbacksRefs.current[i].callback(data)
         }

@@ -1,4 +1,3 @@
-import { version } from '../../../package.json'
 import { Animate } from './animate'
 import { Dimensions } from './dimensions'
 import { Emitter } from './emitter'
@@ -110,9 +109,6 @@ export default class Lenis {
     virtualScroll,
     __experimental__naiveDimensions = false,
   }: LenisOptions = {}) {
-    // Set version
-    window.lenisVersion = version
-
     // Check if wrapper is html or body, fallback to window
     if (
       !wrapper ||
@@ -460,8 +456,8 @@ export default class Lenis {
    *   onStart: () => {
    *     console.log('onStart')
    *   },
-   *   onComplete: () => {
-   *     console.log('onComplete')
+   *   onComplete: (lenis, changed) => {
+   *     console.log('onComplete', changed)
    *   },
    * })
    */
@@ -534,7 +530,7 @@ export default class Lenis {
 
     if (target === this.targetScroll) {
       onStart?.(this)
-      onComplete?.(this)
+      onComplete?.(this, false);
       return
     }
 
@@ -546,7 +542,7 @@ export default class Lenis {
       this.reset()
       this.preventNextNativeScrollEvent()
       this.emit()
-      onComplete?.(this)
+      onComplete?.(this, true)
       this.userData = {}
       return
     }
@@ -586,7 +582,7 @@ export default class Lenis {
         if (completed) {
           this.reset()
           this.emit()
-          onComplete?.(this)
+          onComplete?.(this, true)
           this.userData = {}
           // avoid emitting event twice
           this.preventNextNativeScrollEvent()
