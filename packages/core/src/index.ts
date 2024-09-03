@@ -1,3 +1,4 @@
+import { version } from '../../../package.json'
 import { Animate } from './animate'
 import { Dimensions } from './dimensions'
 import { Emitter } from './emitter'
@@ -70,7 +71,7 @@ export default class Lenis {
    */
   options: OptionalPick<
     Required<LenisOptions>,
-    'duration' | 'prevent' | 'virtualScroll'
+    'duration' | 'prevent' | 'virtualScroll' | 'ease'
   >
   /**
    * The target scroll value
@@ -97,6 +98,7 @@ export default class Lenis {
     syncTouchLerp = 0.075,
     touchInertiaMultiplier = 35,
     duration, // in seconds
+    ease,
     easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     lerp = 0.1,
     infinite = false,
@@ -109,6 +111,9 @@ export default class Lenis {
     virtualScroll,
     __experimental__naiveDimensions = false,
   }: LenisOptions = {}) {
+    // Set version
+    window.lenisVersion = version
+
     // Check if wrapper is html or body, fallback to window
     if (
       !wrapper ||
@@ -128,6 +133,7 @@ export default class Lenis {
       syncTouchLerp,
       touchInertiaMultiplier,
       duration,
+      ease,
       easing,
       lerp,
       infinite,
@@ -349,6 +355,7 @@ export default class Lenis {
         : {
             lerp: this.options.lerp,
             duration: this.options.duration,
+            ease: this.options.ease,
             easing: this.options.easing,
           }),
     })
@@ -468,7 +475,7 @@ export default class Lenis {
       immediate = false,
       lock = false,
       duration = this.options.duration,
-      ease,
+      ease = this.options.ease,
       easing = this.options.easing,
       lerp = this.options.lerp,
       onStart,
@@ -531,7 +538,7 @@ export default class Lenis {
 
     if (target === this.targetScroll) {
       onStart?.(this)
-      onComplete?.(this, false);
+      onComplete?.(this, false)
       return
     }
 
@@ -554,6 +561,7 @@ export default class Lenis {
 
     this.animate.fromTo(this.animatedScroll, target, {
       duration,
+      // Actually implement `ease` here.
       easing: ease ? cubicBezier(ease) : easing,
       lerp,
       onStart: () => {

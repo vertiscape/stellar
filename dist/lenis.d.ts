@@ -92,8 +92,8 @@ type ScrollToOptions = {
      */
     duration?: number;
     /**
-     * Create bezier curve to use for the scroll animation.
-     * @default (t) => []
+     * Create bezier curve to use for the scroll animation, overrides `easing`.
+     * @default (t) => undefined
      */
     ease?: number[];
     /**
@@ -169,6 +169,11 @@ type LenisOptions = {
      * Scroll duration in seconds
      */
     duration?: number;
+    /**
+     * Create bezier curve to use for the scroll animation, overrides `easing`.
+     * @default (t) => undefined
+     */
+    ease?: number[];
     /**
      * Scroll easing function
      * @default (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
@@ -270,7 +275,7 @@ declare class Lenis {
     /**
      * The options passed to the lenis instance
      */
-    options: OptionalPick<Required<LenisOptions>, 'duration' | 'prevent' | 'virtualScroll'>;
+    options: OptionalPick<Required<LenisOptions>, 'duration' | 'prevent' | 'virtualScroll' | 'ease'>;
     /**
      * The target scroll value
      */
@@ -284,7 +289,7 @@ declare class Lenis {
     readonly dimensions: Dimensions;
     private readonly virtualScroll;
     constructor({ wrapper, content, eventsTarget, smoothWheel, syncTouch, syncTouchLerp, touchInertiaMultiplier, duration, // in seconds
-    easing, lerp, infinite, orientation, // vertical, horizontal
+    ease, easing, lerp, infinite, orientation, // vertical, horizontal
     gestureOrientation, // vertical, horizontal, both
     touchMultiplier, wheelMultiplier, autoResize, prevent, virtualScroll, __experimental__naiveDimensions, }?: LenisOptions);
     /**

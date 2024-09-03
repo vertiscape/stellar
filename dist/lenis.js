@@ -4,6 +4,8 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Lenis = factory());
 })(this, (function () { 'use strict';
 
+  var version = "1.1.13";
+
   /**
    * Clamp a value between a minimum and maximum value
    *
@@ -419,7 +421,7 @@
 
   class Lenis {
       constructor({ wrapper = window, content = document.documentElement, eventsTarget = wrapper, smoothWheel = true, syncTouch = false, syncTouchLerp = 0.075, touchInertiaMultiplier = 35, duration, // in seconds
-      easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), lerp = 0.1, infinite = false, orientation = 'vertical', // vertical, horizontal
+      ease, easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), lerp = 0.1, infinite = false, orientation = 'vertical', // vertical, horizontal
       gestureOrientation = 'vertical', // vertical, horizontal, both
       touchMultiplier = 1, wheelMultiplier = 1, autoResize = true, prevent, virtualScroll, __experimental__naiveDimensions = false, } = {}) {
           this._isScrolling = false; // true when scroll is animating
@@ -552,6 +554,7 @@
                   : {
                       lerp: this.options.lerp,
                       duration: this.options.duration,
+                      ease: this.options.ease,
                       easing: this.options.easing,
                   })));
           };
@@ -582,6 +585,8 @@
                   }
               }
           };
+          // Set version
+          window.lenisVersion = version;
           // Check if wrapper is html or body, fallback to window
           if (!wrapper ||
               wrapper === document.documentElement ||
@@ -598,6 +603,7 @@
               syncTouchLerp,
               touchInertiaMultiplier,
               duration,
+              ease,
               easing,
               lerp,
               infinite,
@@ -719,7 +725,7 @@
        *   },
        * })
        */
-      scrollTo(target, { offset = 0, immediate = false, lock = false, duration = this.options.duration, ease, easing = this.options.easing, lerp = this.options.lerp, onStart, onComplete, force = false, // scroll even if stopped
+      scrollTo(target, { offset = 0, immediate = false, lock = false, duration = this.options.duration, ease = this.options.ease, easing = this.options.easing, lerp = this.options.lerp, onStart, onComplete, force = false, // scroll even if stopped
       programmatic = true, // called from outside of the class
       userData, } = {}) {
           if ((this.isStopped || this.isLocked) && !force)
@@ -787,6 +793,7 @@
           }
           this.animate.fromTo(this.animatedScroll, target, {
               duration,
+              // Actually implement `ease` here.
               easing: ease ? cubicBezier(ease) : easing,
               lerp,
               onStart: () => {
