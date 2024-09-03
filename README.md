@@ -1,6 +1,6 @@
 [![LENIS](https://assets.darkroom.engineering/lenis/header.png)](https://github.com/darkroomengineering/lenis)
 
-Go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) for docs. This repository only documents patches made for better control over lenis.
+Go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) for docs. This repository only documents patches made for some specific features that I think would help while developing with it.
 
 ## Install
 ```
@@ -13,7 +13,7 @@ This will replaces `lenis` dependency source, so you don't have to make any furt
 }
 ```
 
-## Patches
+## Changes
 - Introduce `changed` boolean variable to `onComplete`.
     - If the scrollTo `target` equals the current scroll offset, `changed` would be `false`, otherwise `changed` would be `true`.
     - Reason: `changed` allows developers to handle asynchronous tasks differently when `scrollTo` does nothing and executes `onComplete`.
