@@ -29,7 +29,7 @@ lenis.scrollTo(target, {
 ```
 
 - Introduce `ease` option to `ScrollToOptions`.
-    - Use `cubicBezier` function from [framer-motion](https://github.com/framer/motion), `ease` takes 4 elements in an array and use that to create bezier curve function.
+    - Using `cubicBezier` function from [framer-motion](https://github.com/framer/motion), `ease` takes 4 elements in an array and use that to create bezier curve function.
     - `ease` will overrides `easing` if provided.
     - Reason: `easing` function is nice to have, but usually, bezier curve is enough.
 ```js
