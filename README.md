@@ -4,12 +4,12 @@ Go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) 
 
 ## Install
 ```
-npm i git+https://github.com/spaarkstudio/aided-lenis.git
+npm i git+https://github.com/spaarkstudio/stellar.git
 ```
 This will replaces `lenis` dependency source, so you don't have to make any further changes to the codebase to use this fork.
 ```js
 "dependencies": {
-    "lenis": "github:spaarkstudio/aided-lenis", // Replaces official version.
+    "lenis": "github:spaarkstudio/stellar", // Replaces official version.
 }
 ```
 
