@@ -92,6 +92,11 @@ type ScrollToOptions = {
      */
     duration?: number;
     /**
+     * Create bezier curve to use for the scroll animation.
+     * @default (t) => []
+     */
+    ease?: number[];
+    /**
      * The easing function to use for the scroll animation
      * @default (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
      */
@@ -347,7 +352,7 @@ declare class Lenis {
      *   },
      * })
      */
-    scrollTo(target: number | string | HTMLElement, { offset, immediate, lock, duration, easing, lerp, onStart, onComplete, force, // scroll even if stopped
+    scrollTo(target: number | string | HTMLElement, { offset, immediate, lock, duration, ease, easing, lerp, onStart, onComplete, force, // scroll even if stopped
     programmatic, // called from outside of the class
     userData, }?: ScrollToOptions): void;
     private preventNextNativeScrollEvent;

@@ -1,7 +1,7 @@
 import { Animate } from './animate'
 import { Dimensions } from './dimensions'
 import { Emitter } from './emitter'
-import { clamp, modulo } from './maths'
+import { clamp, cubicBezier, modulo } from './maths'
 import type {
   LenisEvent,
   LenisOptions,
@@ -468,6 +468,7 @@ export default class Lenis {
       immediate = false,
       lock = false,
       duration = this.options.duration,
+      ease,
       easing = this.options.easing,
       lerp = this.options.lerp,
       onStart,
@@ -553,7 +554,7 @@ export default class Lenis {
 
     this.animate.fromTo(this.animatedScroll, target, {
       duration,
-      easing,
+      easing: ease ? cubicBezier(ease) : easing,
       lerp,
       onStart: () => {
         // started

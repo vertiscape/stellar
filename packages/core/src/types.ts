@@ -68,6 +68,11 @@ export type ScrollToOptions = {
    */
   duration?: number
   /**
+   * Create bezier curve to use for the scroll animation.
+   * @default (t) => []
+   */
+  ease?: number[]
+  /**
    * The easing function to use for the scroll animation
    * @default (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
    */
