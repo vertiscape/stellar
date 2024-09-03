@@ -2,6 +2,17 @@
 
 Go to [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) for docs. This repository only documents patches made for better control over lenis.
 
+## Install
+```
+npm i git+https://github.com/spaarkstudio/aided-lenis.git
+```
+This will replaces `lenis` dependency source, so you don't have to make any further changes.
+```js
+"dependencies": {
+    "lenis": "github:spaarkstudio/aided-lenis", // Replaces official version.
+}
+```
+
 ## Patches
 - Introduce `changed` boolean variable to `onComplete`.
     - If the scrollTo `target` equals the current scroll offset, `changed` would be `false`, otherwise `changed` would be `true`.
