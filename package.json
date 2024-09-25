@@ -44,20 +44,20 @@
     "dist"
   ],
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/react": "^18.2.77",
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@types/react": "^18.3.9",
     "npm-run-all": "^4.1.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.14.2",
-    "rollup-plugin-dts": "^6.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
     "shx": "^0.3.4",
-    "tslib": "^2.6.2",
-    "typescript": "^5.4.5"
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
@@ -93,5 +93,6 @@
   },
   "dependencies": {
     "@darkroom.engineering/tempus": "^0.0.46"
-  }
+  },
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
 }
