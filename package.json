@@ -26,19 +26,19 @@
     "vue"
   ],
   "scripts": {
-    "build": "pnpm build:core && pnpm build:all",
+    "build": "yarn build:core && yarn build:all",
     "build:core": "tsup --config tsup.core.ts",
     "build:all": "tsup",
-    "dev": "pnpm run -w --parallel /^dev:.*/",
+    "dev": "yarn run -w --parallel /^dev:.*/",
     "dev:build": "tsup --watch",
-    "dev:playground": "pnpm --filter playground dev",
-    "dev:nuxt": "pnpm --filter playground-nuxt dev",
+    "dev:playground": "yarn --filter playground dev",
+    "dev:nuxt": "yarn --filter playground-nuxt dev",
     "readme": "node ./scripts/update-readme.js",
     "version:dev": "npm version prerelease --preid dev --force --no-git-tag-version",
     "version:patch": "npm version patch --force --no-git-tag-version",
     "version:minor": "npm version minor --force --no-git-tag-version",
     "version:major": "npm version major --force --no-git-tag-version",
-    "postversion": "pnpm build && pnpm readme",
+    "postversion": "yarn build && yarn readme",
     "publish:main": "npm publish",
     "publish:dev": "npm publish --tag dev"
   },
@@ -51,18 +51,18 @@
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
+    "@nuxt/kit": ">=3.0.0",
     "react": ">=17.0.0",
-    "vue": ">=3.0.0",
-    "@nuxt/kit": ">=3.0.0"
+    "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {
+    "@nuxt/kit": {
+      "optional": true
+    },
     "react": {
       "optional": true
     },
     "vue": {
-      "optional": true
-    },
-    "@nuxt/kit": {
       "optional": true
     }
   },
@@ -94,5 +94,6 @@
       "default": "./dist/nuxt/runtime/*.mjs"
     },
     "./dist/*": "./dist/*"
-  }
+  },
+  "packageManager": "yarn@4.8.1"
 }
