@@ -2,7 +2,7 @@ import { version } from '../../../package.json'
 import { Animate } from './animate'
 import { Dimensions } from './dimensions'
 import { Emitter } from './emitter'
-import { clamp, modulo } from './maths'
+import { clamp, cubicBezier, modulo } from './maths'
 import type {
   LenisEvent,
   LenisOptions,
@@ -69,7 +69,7 @@ export class Lenis {
    */
   options: OptionalPick<
     Required<LenisOptions>,
-    'duration' | 'prevent' | 'virtualScroll'
+    'duration' | 'prevent' | 'virtualScroll' | 'ease'
   >
   /**
    * The target scroll value
@@ -96,6 +96,7 @@ export class Lenis {
     syncTouchLerp = 0.075,
     touchInertiaMultiplier = 35,
     duration, // in seconds
+    ease,
     easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     lerp = 0.1,
     infinite = false,
@@ -129,6 +130,7 @@ export class Lenis {
       syncTouchLerp,
       touchInertiaMultiplier,
       duration,
+      ease,
       easing,
       lerp,
       infinite,
@@ -559,8 +561,8 @@ export class Lenis {
    *   onStart: () => {
    *     console.log('onStart')
    *   },
-   *   onComplete: () => {
-   *     console.log('onComplete')
+   *   onComplete: (lenis, changed) => {
+   *     console.log('Did I move?', changed)
    *   },
    * })
    */
@@ -571,6 +573,7 @@ export class Lenis {
       immediate = false,
       lock = false,
       duration = this.options.duration,
+      ease = this.options.ease,
       easing = this.options.easing,
       lerp = this.options.lerp,
       onStart,
@@ -633,7 +636,7 @@ export class Lenis {
 
     if (target === this.targetScroll) {
       onStart?.(this)
-      onComplete?.(this)
+      onComplete?.(this, false)
       return
     }
 
@@ -645,7 +648,7 @@ export class Lenis {
       this.reset()
       this.preventNextNativeScrollEvent()
       this.emit()
-      onComplete?.(this)
+      onComplete?.(this, true)
       this.userData = {}
 
       requestAnimationFrame(() => {
@@ -660,7 +663,7 @@ export class Lenis {
 
     this.animate.fromTo(this.animatedScroll, target, {
       duration,
-      easing,
+      easing: ease ? cubicBezier(ease) : easing,
       lerp,
       onStart: () => {
         // started
@@ -689,7 +692,7 @@ export class Lenis {
         if (completed) {
           this.reset()
           this.emit()
-          onComplete?.(this)
+          onComplete?.(this, true)
           this.userData = {}
 
           requestAnimationFrame(() => {

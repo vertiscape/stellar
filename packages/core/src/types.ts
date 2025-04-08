@@ -68,6 +68,11 @@ export type ScrollToOptions = {
    */
   duration?: number
   /**
+   * Create bezier curve to use for the scroll animation.
+   * @default (t) => undefined
+   */
+  ease?: [number, number, number, number]
+  /**
    * The easing function to use for the scroll animation
    * @default (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
    */
@@ -84,7 +89,7 @@ export type ScrollToOptions = {
   /**
    * Called when the scroll completes
    */
-  onComplete?: (lenis: Lenis) => void
+  onComplete?: (lenis: Lenis, changed: boolean) => void
   /**
    * Scroll even if stopped
    * @default false
@@ -141,6 +146,11 @@ export type LenisOptions = {
    * Scroll duration in seconds
    */
   duration?: number
+  /**
+   * Create bezier curve to use for the scroll animation.
+   * @default (t) => undefined
+   */
+  ease?: [number, number, number, number]
   /**
    * Scroll easing function
    * @default (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
