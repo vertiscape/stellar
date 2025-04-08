@@ -45,6 +45,5 @@ packages/snap/dist/
 packages/vue/dist/
 
 dist-new/
-dist/
 
 .yarn
